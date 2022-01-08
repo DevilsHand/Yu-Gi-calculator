@@ -95,4 +95,5 @@ public class FrameJogador extends JPanel implements ActionListener {
 		add(titulo);
 		add(pvEBotoes);
 	}
+	
 }
