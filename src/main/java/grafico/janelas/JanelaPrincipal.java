@@ -25,7 +25,13 @@ public class JanelaPrincipal extends JFrame{
 	}
 	public void doisJogadores() {
 		limparMenu();
-		painelAtivo = new FrameJogador(new Jogador("Gabriel"));
+		//cria os jogadores
+		JPanel jogadorUm = new FrameJogador(new Jogador("Gabriel"));
+		JPanel jogadorDois = new FrameJogador(new Jogador("Elisa"));
+		//limpa o painel e adiciona os jogadores
+		painelAtivo = new JPanel();
+		painelAtivo.add(jogadorUm);
+		painelAtivo.add(jogadorDois);
 		add(painelAtivo);
 		revalidate();
 		update(getGraphics());
