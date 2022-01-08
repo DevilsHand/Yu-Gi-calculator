@@ -11,32 +11,40 @@ public class Jogador {
 		this.nome = nome;
 		historico = new ArrayList<Long>();
 		pontosVidaAtuais = 8000L;
-		historico.add(pontosVidaAtuais);	
 	}
 	public void curar(Long valor) {
-		pontosVidaAtuais = pontosVidaAtuais + valor;
 		historico.add(pontosVidaAtuais);
+		pontosVidaAtuais = pontosVidaAtuais + valor;
 	}
 	public void dano(Long valor) {
-		pontosVidaAtuais = pontosVidaAtuais - valor;
 		historico.add(pontosVidaAtuais);
+		pontosVidaAtuais = pontosVidaAtuais - valor;
 	}
 	public void cortarMetade() {
-		pontosVidaAtuais = pontosVidaAtuais / 2;
 		historico.add(pontosVidaAtuais);
+		pontosVidaAtuais = pontosVidaAtuais / 2;
 	}
 	public void desfazer() {
-		pontosVidaAtuais = historico.get(historico.size());
-		historico.remove(historico.size());
+		pontosVidaAtuais = historico.get(historico.size()-1);
+		if(checarHistorico()) {
+			historico.remove(historico.size()-1);	
+		}
 	}
 	public void limparHistorico() {
 		historico.clear();		
 	}
-	public String mostrarHistorico() {
-		return historico.get(historico.size()).toString();		
+	public Long mostrarHistorico() {
+		return historico.get(historico.size()-1);		
 	}
-	public long acessarVida() {
+	public Long acessarVida() {
 		return pontosVidaAtuais;		
+	}
+	public String getNome() {
+		return this.nome;
+	}
+	public boolean checarHistorico() {
+		return historico.size() >= 1;
+		
 	}
 
 }
