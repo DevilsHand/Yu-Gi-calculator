@@ -26,17 +26,20 @@ public class Jogador {
 		historico.add(pontosVidaAtuais);
 	}
 	public void desfazer() {
-		pontosVidaAtuais = historico.get(historico.size());
-		historico.remove(historico.size());
+		pontosVidaAtuais = historico.get(historico.size()-1);
+		historico.remove(historico.size()-1);
 	}
 	public void limparHistorico() {
 		historico.clear();		
 	}
-	public String mostrarHistorico() {
-		return historico.get(historico.size()).toString();		
+	public Long mostrarHistorico() {
+		return historico.get(historico.size()-1);		
 	}
-	public long acessarVida() {
+	public Long acessarVida() {
 		return pontosVidaAtuais;		
+	}
+	public String getNome() {
+		return this.nome;
 	}
 
 }
