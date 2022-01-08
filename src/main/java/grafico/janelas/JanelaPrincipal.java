@@ -34,6 +34,7 @@ public class JanelaPrincipal extends JFrame{
 		painelAtivo.add(jogadorDois);
 		add(painelAtivo);
 		revalidate();
+		pack();
 		update(getGraphics());
 	}
 	public void quatroJogadores() {

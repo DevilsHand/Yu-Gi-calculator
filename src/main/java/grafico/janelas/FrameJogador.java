@@ -20,28 +20,25 @@ public class FrameJogador extends JPanel implements ActionListener {
 	private static final String REGEX = "[0-9]+";
 	private final String nome;
 	private final Long pontosVida;
-	private final Long historico;
 	private final Jogador jogador;
 	private final JPanel titulo = new JPanel();
 	private final JPanel pvEBotoes = new JPanel();
 	private final JLabel displayNome;
 	private final JLabel displayPV;
-	private final JLabel displayHistorico;
 	private final JTextField entradaValor;
 	private final JButton adicionar = new JButton("< + >");
 	private final JButton subtrair = new JButton("< - >");
 	private final JButton desfazer = new JButton("Desfazer");
+	private JLabel displayHistorico;
 
 	public FrameJogador(Jogador jogador) {
 		// carrega as informações do jogador
 		this.jogador = jogador;
 		nome = this.jogador.getNome();
 		pontosVida = this.jogador.acessarVida();
-		historico = this.jogador.mostrarHistorico();
 		// inicia os displays
 		displayNome = new JLabel(nome);
 		displayPV = new JLabel(pontosVida.toString());
-		displayHistorico = new JLabel(historico.toString());
 		entradaValor = new JTextField();
 
 		iniciarJanela();
@@ -49,9 +46,10 @@ public class FrameJogador extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (! entradaValor.getText().matches(REGEX)) {
-			return;
+			return;// Não executa nada caso sejam inseridos caracteres que não sejam numeros
 		}
 		Long valor = Long.parseLong(entradaValor.getText());
+		//Variavel só pq eu não gosto de colocar expressões
 		switch (e.getActionCommand()) {
 		case "soma":
 			jogador.curar(valor);
@@ -63,6 +61,8 @@ public class FrameJogador extends JPanel implements ActionListener {
 			jogador.desfazer();
 			break;
 		}
+		entradaValor.setText("0");
+		desfazer.setEnabled(jogador.checarHistorico());
 		displayPV.setText(jogador.acessarVida().toString());
 		revalidate();
 		update(getGraphics());
@@ -84,6 +84,7 @@ public class FrameJogador extends JPanel implements ActionListener {
 		adicionar.setAlignmentX(LEFT_ALIGNMENT);
 		subtrair.setAlignmentX(LEFT_ALIGNMENT);
 		desfazer.setAlignmentX(CENTER_ALIGNMENT);
+		entradaValor.setText("0");
 		// adiciona botoes e pvs aos frames
 		titulo.add(displayNome);
 		titulo.add(displayPV);
@@ -91,6 +92,7 @@ public class FrameJogador extends JPanel implements ActionListener {
 		pvEBotoes.add(adicionar);
 		pvEBotoes.add(subtrair);
 		pvEBotoes.add(desfazer);
+		desfazer.setEnabled(false);
 		// adiciona os frames
 		add(titulo);
 		add(pvEBotoes);
