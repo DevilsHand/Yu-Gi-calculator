@@ -1,12 +1,15 @@
 package main.java.grafico.janelas;
 
+import main.java.calculator.jogo.Jogador;
+
 import java.awt.Dimension;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import main.java.calculator.jogo.Jogador;
 
 public class JanelaPrincipal extends JFrame{
+	private static final EntradaValor ENTRADA_VALOR = new EntradaValor();
 	private JPanel painelAtivo;
 	
 	public JanelaPrincipal() {
@@ -28,10 +31,18 @@ public class JanelaPrincipal extends JFrame{
 		//cria os jogadores
 		JPanel jogadorUm = new FrameJogador(new Jogador("Jogador 1"));
 		JPanel jogadorDois = new FrameJogador(new Jogador("Jogador 2"));
+		JPanel campoJogadores = new JPanel();
+		JPanel campoEntrada = new JPanel();
+		//posiciona os campos
+		campoJogadores.setLayout(new BoxLayout(campoJogadores, BoxLayout.LINE_AXIS));
+		campoEntrada.add(ENTRADA_VALOR);
+		campoJogadores.add(jogadorUm);
+		campoJogadores.add(jogadorDois);
 		//limpa o painel e adiciona os jogadores
 		painelAtivo = new JPanel();
-		painelAtivo.add(jogadorUm);
-		painelAtivo.add(jogadorDois);
+		painelAtivo.setLayout(new BoxLayout(painelAtivo, BoxLayout.PAGE_AXIS));
+		painelAtivo.add(campoJogadores);
+		painelAtivo.add(campoEntrada);
 		add(painelAtivo);
 		revalidate();
 		pack();
@@ -45,6 +56,14 @@ public class JanelaPrincipal extends JFrame{
 	}
 	public void ajuda() {
 		limparMenu();
-		
+	}
+	public String acessarValor() {
+		return ENTRADA_VALOR.getText();
+	}
+	public boolean validarEntrada() {
+		return ENTRADA_VALOR.checarValidade();
+	}
+	public void colocarValor(String valor) {
+		ENTRADA_VALOR.setText(valor);
 	}
 }
