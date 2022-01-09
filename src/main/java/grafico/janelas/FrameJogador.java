@@ -2,7 +2,6 @@ package main.java.grafico.janelas;
 
 import static main.java.calculator.main.CONTROLADOR;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,7 +13,6 @@ import javax.swing.JPanel;
 import main.java.calculator.jogo.Jogador;
 
 public class FrameJogador extends JPanel implements ActionListener {
-	private static final String REGEX = "[0-9]+";
 	private final String nome;
 	private final Long pontosVida;
 	private final Jogador jogador;
@@ -25,7 +23,7 @@ public class FrameJogador extends JPanel implements ActionListener {
 	private final JButton adicionar = new JButton("< + >");
 	private final JButton subtrair = new JButton("< - >");
 	private final JButton desfazer = new JButton("Desfazer");
-	private JLabel displayHistorico;
+	private JLabel displayHistorico;//TODO: implementar o display de históricos dos PV
 
 	public FrameJogador(Jogador jogador) {
 		// carrega as informações do jogador

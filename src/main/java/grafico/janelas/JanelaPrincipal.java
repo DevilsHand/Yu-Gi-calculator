@@ -1,13 +1,12 @@
 package main.java.grafico.janelas;
 
-import java.awt.Dimension;
+import main.java.calculator.jogo.Jogador;
 
+import java.awt.Dimension;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import main.java.calculator.jogo.Jogador;
 
 public class JanelaPrincipal extends JFrame{
 	private static final EntradaValor ENTRADA_VALOR = new EntradaValor();
