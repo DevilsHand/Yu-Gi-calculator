@@ -2,6 +2,7 @@ package main.java.grafico.janelas;
 
 import static main.java.calculator.main.CONTROLADOR;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,7 +40,7 @@ public class FrameJogador extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (! CONTROLADOR.acessarValor().matches(REGEX)) {
+		if (! CONTROLADOR.validarEntrada()){
 			return;// Não executa nada caso sejam inseridos caracteres que não sejam numeros
 		}
 		Long valor = Long.parseLong(CONTROLADOR.acessarValor());
@@ -55,7 +56,7 @@ public class FrameJogador extends JPanel implements ActionListener {
 			jogador.desfazer();
 			break;
 		}
-		CONTROLADOR.colocarValor("0");
+		CONTROLADOR.colocarValor("");
 		desfazer.setEnabled(jogador.checarHistorico());
 		displayPV.setText(jogador.acessarVida().toString());
 		revalidate();

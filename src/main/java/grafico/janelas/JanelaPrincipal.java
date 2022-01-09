@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import main.java.calculator.jogo.Jogador;
 
 public class JanelaPrincipal extends JFrame{
-	private static final JTextField ENTRADA_VALOR = new JTextField();
+	private static final EntradaValor ENTRADA_VALOR = new EntradaValor();
 	private JPanel painelAtivo;
 	
 	public JanelaPrincipal() {
@@ -35,7 +35,6 @@ public class JanelaPrincipal extends JFrame{
 		JPanel campoJogadores = new JPanel();
 		JPanel campoEntrada = new JPanel();
 		//posiciona os campos
-		ENTRADA_VALOR.setText("0");
 		campoJogadores.setLayout(new BoxLayout(campoJogadores, BoxLayout.LINE_AXIS));
 		campoEntrada.add(ENTRADA_VALOR);
 		campoJogadores.add(jogadorUm);
@@ -62,9 +61,10 @@ public class JanelaPrincipal extends JFrame{
 	public String acessarValor() {
 		return ENTRADA_VALOR.getText();
 	}
+	public boolean validarEntrada() {
+		return ENTRADA_VALOR.checarValidade();
+	}
 	public void colocarValor(String valor) {
 		ENTRADA_VALOR.setText(valor);
-		
-		
 	}
 }

@@ -19,6 +19,7 @@ public class Jogador {
 	public void dano(Long valor) {
 		historico.add(pontosVidaAtuais);
 		pontosVidaAtuais = pontosVidaAtuais - valor;
+		
 	}
 	public void cortarMetade() {
 		historico.add(pontosVidaAtuais);
