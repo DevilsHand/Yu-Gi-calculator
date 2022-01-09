@@ -13,10 +13,16 @@ public class Jogador {
 		pontosVidaAtuais = 8000L;
 	}
 	public void curar(Long valor) {
+		if (valor == 0) {
+			return;
+		}
 		historico.add(pontosVidaAtuais);
 		pontosVidaAtuais = pontosVidaAtuais + valor;
 	}
 	public void dano(Long valor) {
+		if (valor == 0) {
+			return;
+		}
 		historico.add(pontosVidaAtuais);
 		pontosVidaAtuais = pontosVidaAtuais - valor;
 		
